@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieticket.controller.UserDialogController">
+    <center>
+        <VBox spacing="15.0" style="-fx-padding: 20;">
+            <children>
+                <Label style="-fx-font-weight: bold;" text="User Details">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+
+                <!-- Profile Picture Section -->
+                <VBox spacing="10.0" style="-fx-alignment: center; -fx-padding: 10;">
+                    <children>
+                        <ImageView fx:id="profileImageView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox spacing="10.0" style="-fx-alignment: center;">
+                            <children>
+                                <Button fx:id="uploadPhotoButton" mnemonicParsing="false" onAction="#handleUploadPhoto" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 6 12;" text="📷 Upload Photo" />
+                                <Button fx:id="deletePhotoButton" mnemonicParsing="false" onAction="#handleDeletePhoto" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 6 12;" text="🗑️ Delete Photo" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" />
+                    </columnConstraints>
+
+                    <children>
+                        <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField fx:id="fullNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                        <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                        <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="roleComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-padding: 15;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleOk" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 8 20;" text="Save" />
+                <Button mnemonicParsing="false" onAction="#handleCancel" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-padding: 8 20;" text="Cancel" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

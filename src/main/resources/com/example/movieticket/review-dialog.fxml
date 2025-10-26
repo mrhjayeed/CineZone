@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox prefHeight="500.0" prefWidth="550.0" spacing="20.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieticket.controller.ReviewDialogController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+
+    <children>
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="✍️ Share Your Experience" />
+                <Region HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+
+        <Separator />
+
+        <!-- Review Type -->
+        <VBox spacing="8.0">
+            <children>
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Review Type:" />
+                <ComboBox fx:id="reviewTypeComboBox" prefWidth="500.0" promptText="Select review type" style="-fx-font-size: 13px;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Theater Experience" />
+                            <String fx:value="Movie Review" />
+                            <String fx:value="Service Feedback" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </children>
+        </VBox>
+
+        <!-- Rating Section -->
+        <VBox spacing="8.0">
+            <children>
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Rating:" />
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <ToggleButton fx:id="star1" onAction="#handleStarRating" style="-fx-font-size: 28px; -fx-background-color: transparent; -fx-border-color: transparent;" text="☆" />
+                        <ToggleButton fx:id="star2" onAction="#handleStarRating" style="-fx-font-size: 28px; -fx-background-color: transparent; -fx-border-color: transparent;" text="☆" />
+                        <ToggleButton fx:id="star3" onAction="#handleStarRating" style="-fx-font-size: 28px; -fx-background-color: transparent; -fx-border-color: transparent;" text="☆" />
+                        <ToggleButton fx:id="star4" onAction="#handleStarRating" style="-fx-font-size: 28px; -fx-background-color: transparent; -fx-border-color: transparent;" text="☆" />
+                        <ToggleButton fx:id="star5" onAction="#handleStarRating" style="-fx-font-size: 28px; -fx-background-color: transparent; -fx-border-color: transparent;" text="☆" />
+                        <Label fx:id="ratingLabel" style="-fx-text-fill: #7f8c8d;" text="(Select a rating)" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Title -->
+        <VBox spacing="8.0">
+            <children>
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Title:" />
+                <TextField fx:id="titleField" promptText="Brief summary of your experience" style="-fx-font-size: 13px;" />
+            </children>
+        </VBox>
+
+        <!-- Comment -->
+        <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Your Experience:" />
+                <TextArea fx:id="commentArea" prefHeight="150.0" promptText="Share your detailed thoughts and experiences..." style="-fx-font-size: 13px;" wrapText="true" VBox.vgrow="ALWAYS" />
+                <Label fx:id="charCountLabel" style="-fx-text-fill: #95a5a6; -fx-font-size: 11px;" text="0 characters" />
+            </children>
+        </VBox>
+
+        <!-- Buttons -->
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <children>
+                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-background-radius: 5;" text="Cancel" />
+                <Button fx:id="submitButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSubmit" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-background-radius: 5;" text="Submit Review" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
+

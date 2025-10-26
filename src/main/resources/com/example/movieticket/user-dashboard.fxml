@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="669.0" prefWidth="794.0" stylesheets="@user-dashboard-tabs.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieticket.controller.UserDashboardController">
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2);">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-padding: 20 30;">
+                    <children>
+                        <Label style="-fx-text-fill: white; -fx-font-weight: 600;" text="🎬 CineZone">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="welcomeLabel" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px;" text="Welcome, User" />
+
+                        <!-- Chat Support Button with Badge -->
+                        <HBox alignment="CENTER" spacing="8.0">
+                            <children>
+                                <Button fx:id="chatSupportButton" mnemonicParsing="false" onAction="#handleChatSupport" style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 500; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.3); -fx-border-radius: 8; -fx-border-width: 1;" text="💬 Chat Support" />
+                                <Label fx:id="unreadMessagesLabel" style="-fx-background-color: #ff4757; -fx-text-fill: white; -fx-background-radius: 12; -fx-padding: 3 8; -fx-font-size: 11px; -fx-font-weight: bold;" text="0" visible="false" />
+                            </children>
+                        </HBox>
+
+                        <Button mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 500; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.3); -fx-border-radius: 8; -fx-border-width: 1;" text="Logout" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <TabPane fx:id="mainTabPane" style="-fx-background-color: #f7f9fc; -fx-tab-min-height: 50px; -fx-tab-max-height: 50px;" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab style="-fx-background-color: white; -fx-background-radius: 12 12 0 0; -fx-border-color: #667eea; -fx-border-width: 0 0 3 0; -fx-padding: 15 25; -fx-font-size: 14px; -fx-font-weight: 600;" text="  🎭 Now Showing  ">
+                    <content>
+                        <VBox spacing="20.0" style="-fx-padding: 30; -fx-background-color: #f7f9fc;">
+                            <children>
+                                <!-- Search and Filter Section -->
+                                <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 3);">
+                                    <children>
+                                        <Label style="-fx-font-weight: 600; -fx-font-size: 20px; -fx-text-fill: #2d3436;" text="Discover Movies" />
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <TextField fx:id="searchField" onKeyReleased="#handleSearchMovies" promptText="Search movies by title, director, or genre..." style="-fx-pref-width: 300; -fx-padding: 10 15; -fx-background-radius: 10; -fx-border-color: #dfe6e9; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-background-color: #f8f9fa; -fx-font-size: 13px;" HBox.hgrow="ALWAYS" />
+                                                <ComboBox fx:id="genreFilter" onAction="#handleSearchMovies" promptText="All Genres" style="-fx-pref-width: 150; -fx-background-radius: 10; -fx-padding: 8; -fx-border-color: #dfe6e9; -fx-border-radius: 10; -fx-font-size: 13px;" />
+                                                <Button mnemonicParsing="false" onAction="#handleSearchMovies" style="-fx-background-color: #667eea; -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 10; -fx-font-weight: 500; -fx-cursor: hand;" text="Search" />
+                                                <Button mnemonicParsing="false" onAction="#handleClearSearch" style="-fx-background-color: #ecf0f1; -fx-text-fill: #636e72; -fx-padding: 10 20; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: 500;" text="Clear" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Movies Grid Section -->
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <VBox spacing="3.0">
+                                                    <children>
+                                                        <Label style="-fx-font-weight: 600; -fx-font-size: 18px; -fx-text-fill: #2d3436;" text="Featured Movies" />
+                                                        <Label fx:id="movieCountLabel" style="-fx-text-fill: #636e72; -fx-font-size: 13px;" text="Showing 0 movies" />
+                                                    </children>
+                                                </VBox>
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button mnemonicParsing="false" onAction="#handleRefreshMovies" style="-fx-background-color: white; -fx-text-fill: #667eea; -fx-padding: 10 20; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: 500; -fx-border-color: #667eea; -fx-border-radius: 10; -fx-border-width: 1.5;" text="🔄 Refresh Movies" />
+                                            </children>
+                                        </HBox>
+                                        <ScrollPane fx:id="moviesScrollPane" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                                            <content>
+                                                <FlowPane fx:id="moviesFlowPane" hgap="20.0" style="-fx-padding: 10; -fx-background-color: transparent;" vgap="20.0" />
+                                            </content>
+                                        </ScrollPane>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab style="-fx-background-color: white; -fx-background-radius: 12 12 0 0; -fx-border-color: #667eea; -fx-border-width: 0 0 3 0; -fx-padding: 15 25; -fx-font-size: 14px; -fx-font-weight: 600;" text="  🎬 Showtimes  ">
+                    <content>
+                        <VBox spacing="20.0" style="-fx-padding: 30; -fx-background-color: #f7f9fc;">
+                            <children>
+                                <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 3);">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <VBox spacing="3.0">
+                                                    <children>
+                                                        <Label style="-fx-font-weight: 600; -fx-font-size: 20px; -fx-text-fill: #2d3436;" text="Available Showtimes" />
+                                                        <Label fx:id="screeningCountLabel" style="-fx-text-fill: #636e72; -fx-font-size: 13px;" text="Showing 0 showtimes" />
+                                                    </children>
+                                                </VBox>
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button mnemonicParsing="false" onAction="#handleRefreshScreenings" style="-fx-background-color: white; -fx-text-fill: #667eea; -fx-padding: 10 20; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: 500; -fx-border-color: #667eea; -fx-border-radius: 10; -fx-border-width: 1.5;" text="🔄 Refresh Showtimes" />
+                                            </children>
+                                        </HBox>
+
+                                        <!-- Filtered Movie Indicator -->
+                                        <HBox fx:id="filterIndicatorBox" alignment="CENTER_LEFT" spacing="12.0">
+                                            <children>
+                                                <Label fx:id="filteredMovieLabel" style="-fx-background-color: #fff3e0; -fx-text-fill: #fb8c00; -fx-padding: 10 15; -fx-background-radius: 8; -fx-font-weight: 500; -fx-font-size: 13px;" text="" visible="false" />
+                                                <Button fx:id="clearFilterButton" mnemonicParsing="false" onAction="#handleClearFilter" style="-fx-background-color: #ff7675; -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 8; -fx-font-weight: 500; -fx-cursor: hand;" text="✖ Show All Showtimes" visible="false" />
+                                            </children>
+                                        </HBox>
+
+                                        <Label style="-fx-text-fill: #636e72; -fx-font-size: 13px;" text="Browse available showtimes and book your tickets. Click on any card to book tickets." />
+                                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                                            <content>
+                                                <FlowPane fx:id="screeningsFlowPane" hgap="20.0" style="-fx-padding: 10; -fx-background-color: transparent;" vgap="20.0" />
+                                            </content>
+                                        </ScrollPane>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab style="-fx-background-color: white; -fx-background-radius: 12 12 0 0; -fx-border-color: #667eea; -fx-border-width: 0 0 3 0; -fx-padding: 15 25; -fx-font-size: 14px; -fx-font-weight: 600;" text="  📝 My Bookings  ">
+                    <content>
+                        <VBox spacing="20.0" style="-fx-padding: 30; -fx-background-color: #f7f9fc;">
+                            <children>
+                                <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 3);">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <VBox spacing="3.0">
+                                                    <children>
+                                                        <Label style="-fx-font-weight: 600; -fx-font-size: 20px; -fx-text-fill: #2d3436;" text="My Ticket Bookings" />
+                                                        <Label style="-fx-text-fill: #636e72; -fx-font-size: 13px;" text="View and manage your bookings" />
+                                                    </children>
+                                                </VBox>
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button mnemonicParsing="false" onAction="#handleRefreshBookings" style="-fx-background-color: white; -fx-text-fill: #667eea; -fx-padding: 10 20; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: 500; -fx-border-color: #667eea; -fx-border-radius: 10; -fx-border-width: 1.5;" text="🔄 Refresh Bookings" />
+                                            </children>
+                                        </HBox>
+                                        <ListView fx:id="bookingsListView" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #dfe6e9; -fx-border-width: 1;" VBox.vgrow="ALWAYS" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab style="-fx-background-color: white; -fx-background-radius: 12 12 0 0; -fx-border-color: #667eea; -fx-border-width: 0 0 3 0; -fx-padding: 15 25; -fx-font-size: 14px; -fx-font-weight: 600;" text="  👤 Profile  ">
+                    <content>
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: #f7f9fc; -fx-background: #f7f9fc;">
+                            <content>
+                                <VBox spacing="20.0" style="-fx-padding: 30; -fx-background-color: #f7f9fc;">
+                                    <children>
+                                        <!-- Profile Information Section -->
+                                        <VBox spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 3);">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                                    <children>
+                                                        <VBox spacing="3.0">
+                                                            <children>
+                                                                <Label style="-fx-font-weight: 600; -fx-font-size: 20px; -fx-text-fill: #2d3436;" text="My Profile" />
+                                                                <Label style="-fx-text-fill: #636e72; -fx-font-size: 13px;" text="View and update your personal information" />
+                                                            </children>
+                                                        </VBox>
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <Button mnemonicParsing="false" onAction="#handleRefreshProfile" style="-fx-background-color: white; -fx-text-fill: #667eea; -fx-padding: 10 20; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: 500; -fx-border-color: #667eea; -fx-border-radius: 10; -fx-border-width: 1.5;" text="🔄 Refresh" />
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Profile Picture and Info Container -->
+                                                <HBox spacing="30.0" style="-fx-padding: 15 0;">
+                                                    <children>
+                                                        <!-- Profile Picture Section -->
+                                                        <VBox alignment="CENTER" spacing="12.0" style="-fx-min-width: 150;">
+                                                            <children>
+                                                                <javafx.scene.image.ImageView fx:id="profilePictureImageView" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 5); -fx-background-radius: 60;" />
+                                                                <Label style="-fx-text-fill: #636e72; -fx-font-size: 12px;" text="Profile Picture" />
+                                                            </children>
+                                                        </VBox>
+
+                                                        <!-- Profile Details -->
+                                                        <VBox spacing="15.0" style="-fx-padding: 10;">
+                                                            <children>
+                                                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                                                    <children>
+                                                                        <Label style="-fx-font-weight: 500; -fx-min-width: 120; -fx-text-fill: #636e72; -fx-font-size: 13px;" text="User ID:" />
+                                                                        <Label fx:id="profileUserIdLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 14px; -fx-font-weight: 500;" text="#12345" />
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                                                    <children>
+                                                                        <Label style="-fx-font-weight: 500; -fx-min-width: 120; -fx-text-fill: #636e72; -fx-font-size: 13px;" text="Full Name:" />
+                                                                        <Label fx:id="profileFullNameLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 14px; -fx-font-weight: 500;" text="John Doe" />
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                                                    <children>
+                                                                        <Label style="-fx-font-weight: 500; -fx-min-width: 120; -fx-text-fill: #636e72; -fx-font-size: 13px;" text="Username:" />
+                                                                        <Label fx:id="profileUsernameLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 14px; -fx-font-weight: 500;" text="johndoe" />
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                                                    <children>
+                                                                        <Label style="-fx-font-weight: 500; -fx-min-width: 120; -fx-text-fill: #636e72; -fx-font-size: 13px;" text="Email:" />
+                                                                        <Label fx:id="profileEmailLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 14px; -fx-font-weight: 500;" text="john@example.com" />
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                                                    <children>
+                                                                        <Label style="-fx-font-weight: 500; -fx-min-width: 120; -fx-text-fill: #636e72; -fx-font-size: 13px;" text="Role:" />
+                                                                        <Label fx:id="profileRoleLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 14px; -fx-font-weight: 500;" text="User" />
+                                                                    </children>
+                                                                </HBox>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Action Buttons -->
+                                                <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-padding: 10 0 0 0;">
+                                                    <children>
+                                                        <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#handleEditProfile" style="-fx-background-color: #667eea; -fx-text-fill: white; -fx-font-weight: 500; -fx-padding: 12 24; -fx-background-radius: 10; -fx-cursor: hand;" text="✏️ Edit Profile" />
+                                                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#handleChangePassword" style="-fx-background-color: #fdcb6e; -fx-text-fill: white; -fx-font-weight: 500; -fx-padding: 12 24; -fx-background-radius: 10; -fx-cursor: hand;" text="🔒 Change Password" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Account Statistics Section -->
+                                        <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 3);">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                                    <children>
+                                                        <VBox spacing="3.0">
+                                                            <children>
+                                                                <Label style="-fx-font-weight: 600; -fx-font-size: 20px; -fx-text-fill: #2d3436;" text="Account Statistics" />
+                                                                <Label style="-fx-text-fill: #636e72; -fx-font-size: 13px;" text="Your booking activity at a glance" />
+                                                            </children>
+                                                        </VBox>
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <Button mnemonicParsing="false" onAction="#handleRefreshStatistics" style="-fx-background-color: white; -fx-text-fill: #667eea; -fx-padding: 10 20; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: 500; -fx-border-color: #667eea; -fx-border-radius: 10; -fx-border-width: 1.5;" text="🔄 Refresh" />
+                                                    </children>
+                                                </HBox>
+
+                                                <HBox spacing="20.0" style="-fx-padding: 15 0;">
+                                                    <children>
+                                                        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.2), 10, 0, 0, 3); -fx-border-color: #667eea; -fx-border-width: 2; -fx-border-radius: 12; -fx-min-width: 140;" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label style="-fx-background-color: #e3f2fd; -fx-text-fill: #1e88e5; -fx-padding: 12; -fx-background-radius: 12; -fx-font-size: 24px;" text="🎫" />
+                                                                <Label fx:id="totalBookingsLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 32px; -fx-font-weight: 700;" text="0" />
+                                                                <Label style="-fx-text-fill: #636e72; -fx-font-size: 12px; -fx-font-weight: 500;" text="Total Bookings" />
+                                                            </children>
+                                                        </VBox>
+
+                                                        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(39,174,96,0.2), 10, 0, 0, 3); -fx-border-color: #00b894; -fx-border-width: 2; -fx-border-radius: 12; -fx-min-width: 140;" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label style="-fx-background-color: #e8f5e9; -fx-text-fill: #43a047; -fx-padding: 12; -fx-background-radius: 12; -fx-font-size: 24px;" text="🎟️" />
+                                                                <Label fx:id="totalTicketsLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 32px; -fx-font-weight: 700;" text="0" />
+                                                                <Label style="-fx-text-fill: #636e72; -fx-font-size: 12px; -fx-font-weight: 500;" text="Tickets Purchased" />
+                                                            </children>
+                                                        </VBox>
+
+                                                        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(253,203,110,0.2), 10, 0, 0, 3); -fx-border-color: #fdcb6e; -fx-border-width: 2; -fx-border-radius: 12; -fx-min-width: 140;" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label style="-fx-background-color: #fff3e0; -fx-text-fill: #fb8c00; -fx-padding: 12; -fx-background-radius: 12; -fx-font-size: 24px;" text="💰" />
+                                                                <Label fx:id="totalSpentLabel" style="-fx-text-fill: #2d3436; -fx-font-size: 32px; -fx-font-weight: 700;" text="0.00" />
+                                                                <Label style="-fx-text-fill: #636e72; -fx-font-size: 12px; -fx-font-weight: 500;" text="Total Spent" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <Tab style="-fx-background-color: white; -fx-background-radius: 12 12 0 0; -fx-border-color: #667eea; -fx-border-width: 0 0 3 0; -fx-padding: 15 25; -fx-font-size: 14px; -fx-font-weight: 600;" text="  ⭐ Reviews  ">
+                    <content>
+                        <VBox spacing="20.0" style="-fx-padding: 30; -fx-background-color: #f7f9fc;">
+                            <children>
+                                <!-- Header Section -->
+                                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 3);">
+                                    <children>
+                                        <VBox spacing="5.0">
+                                            <children>
+                                                <Label style="-fx-font-weight: 600; -fx-font-size: 20px; -fx-text-fill: #2d3436;" text="My Reviews" />
+                                                <Label style="-fx-text-fill: #636e72; -fx-font-size: 13px;" text="Share your theater experiences" />
+                                            </children>
+                                        </VBox>
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <VBox alignment="CENTER" spacing="5.0" style="-fx-background-color: #e3f2fd; -fx-padding: 15; -fx-background-radius: 10;">
+                                            <children>
+                                                <Label fx:id="totalReviewsLabel" style="-fx-font-size: 28px; -fx-font-weight: 700; -fx-text-fill: #1e88e5;" text="0" />
+                                                <Label style="-fx-text-fill: #1e88e5; -fx-font-size: 11px; -fx-font-weight: 500;" text="TOTAL REVIEWS" />
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" spacing="5.0" style="-fx-background-color: #fff3e0; -fx-padding: 15; -fx-background-radius: 10;">
+                                            <children>
+                                                <Label fx:id="averageRatingLabel" style="-fx-font-size: 28px; -fx-font-weight: 700; -fx-text-fill: #fb8c00;" text="0.0 ⭐" />
+                                                <Label style="-fx-text-fill: #fb8c00; -fx-font-size: 11px; -fx-font-weight: 500;" text="AVERAGE RATING" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <!-- Action Buttons -->
+                                <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#handleWriteReview" style="-fx-background-color: #00b894; -fx-text-fill: white; -fx-font-weight: 500; -fx-padding: 12 25; -fx-background-radius: 10; -fx-font-size: 14px; -fx-cursor: hand;" text="✍️ Write a Review" />
+                                        <Button mnemonicParsing="false" onAction="#handleViewAllReviews" style="-fx-background-color: #667eea; -fx-text-fill: white; -fx-font-weight: 500; -fx-padding: 12 25; -fx-background-radius: 10; -fx-cursor: hand;" text="👥 Community Reviews" />
+                                        <Button mnemonicParsing="false" onAction="#handleRefreshReviews" style="-fx-background-color: white; -fx-text-fill: #667eea; -fx-padding: 12 25; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: 500; -fx-border-color: #667eea; -fx-border-radius: 10; -fx-border-width: 1.5;" text="🔄 Refresh" />
+                                    </children>
+                                </HBox>
+
+                                <!-- Reviews Container -->
+                                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                                    <content>
+                                        <VBox fx:id="reviewsContainer" spacing="15.0" style="-fx-padding: 10; -fx-background-color: transparent;" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

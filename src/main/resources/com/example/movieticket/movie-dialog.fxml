@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieticket.controller.MovieDialogController">
+    <children>
+        <Label style="-fx-font-weight: bold;" text="Movie Details">
+            <font>
+                <Font size="16.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+        </Label>
+        <HBox spacing="20.0">
+            <children>
+                <!-- Poster Image Section -->
+                <VBox alignment="CENTER" spacing="10.0" style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10;">
+                    <children>
+                        <Label text="Movie Poster" style="-fx-font-weight: bold;" />
+                        <ImageView fx:id="posterImageView" fitHeight="200.0" fitWidth="150.0" preserveRatio="true"
+                                   style="-fx-border-color: #ccc; -fx-border-width: 1;">
+                            <image>
+                                <Image url="@/placeholder-poster.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="uploadPosterButton" onAction="#handleUploadPoster" text="Upload Poster"
+                                style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+                        <Button fx:id="removePosterButton" onAction="#handleRemovePoster" text="Remove"
+                                style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
+                    </children>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </VBox>
+
+                <!-- Movie Details Form -->
+                <GridPane hgap="10.0" vgap="15.0" HBox.hgrow="ALWAYS">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="300.0" />
+                    </columnConstraints>
+                    <children>
+                        <Label text="Title:" GridPane.rowIndex="0" />
+                        <TextField fx:id="titleField" promptText="Enter movie title" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label text="Director:" GridPane.rowIndex="1" />
+                        <TextField fx:id="directorField" promptText="Enter director name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label text="Release Year:" GridPane.rowIndex="2" />
+                        <TextField fx:id="yearField" promptText="Enter release year" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                        <Label text="Genre:" GridPane.rowIndex="3" />
+                        <TextField fx:id="genreField" promptText="e.g., Sci-Fi, Action, Adventure" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                        <Label text="Duration (min):" GridPane.rowIndex="4" />
+                        <TextField fx:id="durationField" promptText="Enter duration in minutes" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                        <Label text="Rating:" GridPane.rowIndex="5" />
+                        <TextField fx:id="ratingField" promptText="Enter rating (0.0-10.0)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                        <Label text="Trailer URL:" GridPane.rowIndex="6" />
+                        <TextField fx:id="trailerUrlField" promptText="Enter YouTube or video URL" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                        <Label text="Description:" GridPane.rowIndex="7" />
+                        <TextArea fx:id="descriptionArea" prefRowCount="3" promptText="Enter movie description" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                    </children>
+                </GridPane>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleOk" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Save" />
+                <Button mnemonicParsing="false" onAction="#handleCancel" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Cancel" />
+            </children>
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

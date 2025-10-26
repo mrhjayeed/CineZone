@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.movieticket.controller.UserSelectionDialogController"
+            prefWidth="500.0" prefHeight="600.0"
+            style="-fx-background-color: #f5f5f5;">
+
+    <top>
+        <VBox style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+            <padding>
+                <Insets top="25" right="25" bottom="20" left="25"/>
+            </padding>
+
+            <!-- Title Section -->
+            <VBox spacing="5">
+                <Label text="Chat Management"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Label text="Shared Admin Inbox - Select a user to view their messages"
+                       style="-fx-text-fill: #7f8c8d; -fx-font-size: 13px;"/>
+            </VBox>
+
+            <!-- Search Box -->
+            <HBox spacing="12" alignment="CENTER_LEFT" style="-fx-padding: 20 0 0 0;">
+                <TextField fx:id="searchField" promptText="🔍 Search by username or email..." HBox.hgrow="ALWAYS"
+                          style="-fx-pref-height: 40px;
+                                 -fx-font-size: 14px;
+                                 -fx-background-color: #f8f9fa;
+                                 -fx-border-color: #dee2e6;
+                                 -fx-border-radius: 8;
+                                 -fx-background-radius: 8;
+                                 -fx-padding: 0 15;"/>
+                <Button text="Search" onAction="#handleSearch"
+                       style="-fx-pref-width: 90px;
+                              -fx-pref-height: 40px;
+                              -fx-background-color: #3498db;
+                              -fx-text-fill: white;
+                              -fx-font-weight: bold;
+                              -fx-font-size: 13px;
+                              -fx-background-radius: 8;
+                              -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="12" style="-fx-background-color: #f5f5f5;">
+            <padding>
+                <Insets top="20" right="25" bottom="15" left="25"/>
+            </padding>
+
+            <!-- Info Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="12"
+                  style="-fx-background-color: white;
+                         -fx-padding: 12 15;
+                         -fx-border-radius: 8;
+                         -fx-background-radius: 8;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);">
+                <Label text="💬 Active Conversations"
+                       style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #2c3e50;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="userCountLabel" text="0 users"
+                       style="-fx-text-fill: #ffffff;
+                              -fx-background-color: #3498db;
+                              -fx-padding: 4 12;
+                              -fx-background-radius: 12;
+                              -fx-font-size: 11px;
+                              -fx-font-weight: bold;"/>
+            </HBox>
+
+            <!-- Users List -->
+            <StackPane VBox.vgrow="ALWAYS">
+                <ListView fx:id="usersListView"
+                         style="-fx-background-color: white;
+                                -fx-border-color: #e1e8ed;
+                                -fx-border-width: 1;
+                                -fx-border-radius: 8;
+                                -fx-background-radius: 8;
+                                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);
+                                -fx-padding: 5;"/>
+
+                <!-- Empty State -->
+                <VBox fx:id="emptyStateBox" alignment="CENTER" spacing="10"
+                      style="-fx-background-color: white; -fx-padding: 40;"
+                      visible="false" managed="false">
+                    <Label text="📭" style="-fx-font-size: 48px;"/>
+                    <Label text="No users with messages found"
+                           style="-fx-text-fill: #95a5a6;
+                                  -fx-font-size: 15px;
+                                  -fx-font-weight: bold;"/>
+                    <Label text="Users will appear here when they send messages"
+                           style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px;"/>
+                </VBox>
+            </StackPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="12" alignment="CENTER_RIGHT"
+              style="-fx-background-color: white;
+                     -fx-padding: 20 25 25 25;
+                     -fx-border-color: #e1e8ed;
+                     -fx-border-width: 1 0 0 0;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, -2);">
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="refreshButton" text="🔄 Refresh" onAction="#handleRefresh"
+                   style="-fx-pref-height: 38px;
+                          -fx-padding: 8 20;
+                          -fx-background-color: #ecf0f1;
+                          -fx-text-fill: #2c3e50;
+                          -fx-font-weight: bold;
+                          -fx-font-size: 13px;
+                          -fx-background-radius: 8;
+                          -fx-cursor: hand;"/>
+
+            <Button fx:id="openChatButton" text="Open Chat" onAction="#handleOpenChat" defaultButton="true"
+                   style="-fx-pref-height: 38px;
+                          -fx-padding: 8 30;
+                          -fx-background-color: #27ae60;
+                          -fx-text-fill: white;
+                          -fx-font-weight: bold;
+                          -fx-font-size: 14px;
+                          -fx-background-radius: 8;
+                          -fx-cursor: hand;"
+                   disable="true"/>
+
+            <Button text="Cancel" onAction="#handleCancel" cancelButton="true"
+                   style="-fx-pref-height: 38px;
+                          -fx-padding: 8 25;
+                          -fx-background-color: transparent;
+                          -fx-text-fill: #7f8c8d;
+                          -fx-font-weight: bold;
+                          -fx-font-size: 13px;
+                          -fx-border-color: #bdc3c7;
+                          -fx-border-width: 1.5;
+                          -fx-border-radius: 8;
+                          -fx-background-radius: 8;
+                          -fx-cursor: hand;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

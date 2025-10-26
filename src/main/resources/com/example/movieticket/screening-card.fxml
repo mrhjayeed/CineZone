@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<VBox fx:id="screeningCard" alignment="TOP_LEFT" prefWidth="320.0" spacing="12.0"
+      style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2); -fx-cursor: hand;"
+      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.movieticket.controller.ScreeningCardController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <children>
+      <!-- Movie Title -->
+      <Label fx:id="movieTitleLabel" maxWidth="290.0" wrapText="true"
+             style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50;" />
+
+      <!-- Screen Info -->
+      <HBox alignment="CENTER_LEFT" spacing="8.0">
+         <children>
+            <Label text="🎭" style="-fx-font-size: 14px;" />
+            <Label fx:id="screenNameLabel" style="-fx-font-size: 13px; -fx-text-fill: #34495e; -fx-font-weight: bold;" />
+         </children>
+      </HBox>
+
+      <!-- Date and Time -->
+      <HBox alignment="CENTER_LEFT" spacing="8.0">
+         <children>
+            <Label text="📅" style="-fx-font-size: 14px;" />
+            <Label fx:id="dateTimeLabel" style="-fx-font-size: 13px; -fx-text-fill: #34495e;" />
+         </children>
+      </HBox>
+
+      <!-- Price and Seats -->
+      <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-padding: 5 0 0 0;">
+         <children>
+            <!-- Price -->
+            <VBox alignment="CENTER_LEFT" spacing="3.0">
+               <children>
+                  <Label text="Price" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;" />
+                  <Label fx:id="priceLabel" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #27ae60;" />
+               </children>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Available Seats -->
+            <VBox alignment="CENTER_RIGHT" spacing="3.0">
+               <children>
+                  <Label text="Available Seats" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;" />
+                  <Label fx:id="availableSeatsLabel" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #3498db;" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+
+      <!-- Book Button -->
+      <Button fx:id="bookButton" mnemonicParsing="false" maxWidth="Infinity"
+              text="📅 Book Tickets"
+              style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 20; -fx-font-size: 12px; -fx-font-weight: bold;" />
+   </children>
+</VBox>
+

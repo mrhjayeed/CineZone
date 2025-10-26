@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.movieticket.controller.CommunityReviewCardController"
+      spacing="8"
+      style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- User Info and Date -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label fx:id="userNameLabel" text="👤 User Name"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Label fx:id="reviewDateLabel" text="Jan 01, 2025"
+               style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-font-style: italic;"/>
+    </HBox>
+
+    <!-- Type Badge and Rating -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label fx:id="typeBadgeLabel" text="THEATER EXPERIENCE"
+               style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 4 10; -fx-background-radius: 12;"/>
+        <Label fx:id="ratingLabel" text="⭐⭐⭐⭐⭐"
+               style="-fx-font-size: 16px; -fx-text-fill: #f39c12;"/>
+    </HBox>
+
+    <!-- Title -->
+    <Label fx:id="titleLabel" text="Review Title" wrapText="true"
+           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+
+    <!-- Comment -->
+    <Label fx:id="commentLabel" text="Review comment goes here..." wrapText="true"
+           style="-fx-font-size: 14px; -fx-text-fill: #555; -fx-line-spacing: 2;"/>
+
+</VBox>

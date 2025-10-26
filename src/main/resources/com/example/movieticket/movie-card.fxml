@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
+
+<VBox fx:id="movieCard" alignment="CENTER" maxWidth="200.0" prefWidth="200.0" spacing="10.0"
+      style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2); -fx-cursor: hand;"
+      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.movieticket.controller.MovieCardController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <children>
+      <ImageView fx:id="posterImageView" fitHeight="220.0" fitWidth="150.0" preserveRatio="true"
+                 style="-fx-background-radius: 5;" />
+      <Label fx:id="titleLabel" maxWidth="180.0" wrapText="true"
+             style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+      <Label fx:id="yearLabel" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;" />
+      <FlowPane fx:id="genreFlowPane" hgap="4.0" vgap="4.0" alignment="CENTER" prefWrapLength="180.0" />
+      <HBox fx:id="ratingBox" alignment="CENTER" spacing="5.0">
+         <children>
+            <Label fx:id="starLabel" text="★" style="-fx-font-size: 12px; -fx-text-fill: #f39c12;" />
+            <Label fx:id="ratingLabel" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #f39c12;" />
+         </children>
+      </HBox>
+      <VBox fx:id="buttonBox" alignment="CENTER" spacing="8.0">
+         <children>
+            <Button fx:id="detailsButton" mnemonicParsing="false" text="View Details"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 16; -fx-font-size: 11px;" />
+            <Button fx:id="bookButton" mnemonicParsing="false" text="📅 Book Tickets"
+                    style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 16; -fx-font-size: 11px;" />
+         </children>
+      </VBox>
+   </children>
+</VBox>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieticket.controller.MovieDetailsDialogController">
+    <children>
+        <!-- Header Section -->
+        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2); -fx-padding: 20;">
+            <children>
+                <Label style="-fx-font-size: 32px;" text="🎬" />
+                <Label fx:id="titleLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="Movie Title" wrapText="true" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+
+        <!-- Main Content Section -->
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+            <content>
+                <HBox spacing="20.0" style="-fx-padding: 20;">
+                    <children>
+                        <!-- Left Side - Poster -->
+                        <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+                            <children>
+                                <ImageView fx:id="posterImageView" fitHeight="300.0" fitWidth="200.0" preserveRatio="true" style="-fx-background-color: #ecf0f1; -fx-background-radius: 5;">
+                                    <image>
+                                        <Image url="@/placeholder-poster.png" />
+                                    </image>
+                                </ImageView>
+
+                                <!-- Rating Badge -->
+                                <HBox alignment="CENTER" spacing="8.0" style="-fx-background-color: #f39c12; -fx-padding: 10 20; -fx-background-radius: 20;">
+                                    <children>
+                                        <Label style="-fx-font-size: 18px;" text="⭐" />
+                                        <Label fx:id="ratingLabel" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="8.5" />
+                                        <Label style="-fx-font-size: 14px; -fx-text-fill: white;" text="/ 10" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Right Side - Details -->
+                        <VBox spacing="20.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);" HBox.hgrow="ALWAYS">
+                            <children>
+                                <!-- Quick Info Cards -->
+                                <HBox spacing="15.0">
+                                    <children>
+                                        <!-- Year Card -->
+                                        <VBox alignment="CENTER" spacing="5.0" style="-fx-background-color: #3498db; -fx-padding: 15; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label style="-fx-font-size: 24px;" text="📅" />
+                                                <Label style="-fx-font-size: 10px; -fx-text-fill: rgba(255,255,255,0.8); -fx-font-weight: bold;" text="YEAR" />
+                                                <Label fx:id="yearLabel" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="2024" />
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Duration Card -->
+                                        <VBox alignment="CENTER" spacing="5.0" style="-fx-background-color: #9b59b6; -fx-padding: 15; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label style="-fx-font-size: 24px;" text="⏱️" />
+                                                <Label style="-fx-font-size: 10px; -fx-text-fill: rgba(255,255,255,0.8); -fx-font-weight: bold;" text="RUNTIME" />
+                                                <Label fx:id="durationLabel" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="120 min" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <!-- Director Section -->
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-font-weight: bold;" text="🎬 DIRECTOR" />
+                                        <Label fx:id="directorLabel" style="-fx-font-size: 16px; -fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="Director Name" wrapText="true" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Separator -->
+                                <Separator style="-fx-background-color: #ecf0f1;" />
+
+                                <!-- Genre Section -->
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-font-weight: bold;" text="🎭 GENRES" />
+                                        <FlowPane fx:id="genreFlowPane" hgap="8.0" vgap="8.0">
+                                            <!-- Genre tags will be added programmatically -->
+                                        </FlowPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Separator -->
+                                <Separator style="-fx-background-color: #ecf0f1;" />
+
+                                <!-- Description Section -->
+                                <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <Label style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-font-weight: bold;" text="📖 SYNOPSIS" />
+                                        <Label fx:id="descriptionLabel" style="-fx-font-size: 14px; -fx-text-fill: #34495e; -fx-line-spacing: 1.5;" text="Movie description goes here..." wrapText="true" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </content>
+        </ScrollPane>
+
+        <!-- Action Buttons -->
+        <HBox alignment="CENTER" spacing="15.0" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;">
+            <children>
+                <Button fx:id="watchTrailerButton" onAction="#handleWatchTrailer" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 30; -fx-background-radius: 5; -fx-cursor: hand;" text="🎥 Watch Trailer" />
+                <Button fx:id="bookNowButton" onAction="#handleBookNow" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 30; -fx-background-radius: 5; -fx-cursor: hand;" text="📅 Book Tickets" />
+                <Button onAction="#handleClose" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 30; -fx-background-radius: 5; -fx-cursor: hand;" text="Close" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

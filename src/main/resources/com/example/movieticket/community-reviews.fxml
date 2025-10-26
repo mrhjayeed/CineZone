@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieticket.controller.CommunityReviewsController">
+
+    <!-- Header Section -->
+    <VBox spacing="5" style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2); -fx-padding: 20;">
+        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;" text="Community Reviews" />
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1;" text="See what other users are saying about movies, theaters, and screenings" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="reviewCountLabel" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ecf0f1; -fx-background-color: rgba(255,255,255,0.2); -fx-padding: 5 10; -fx-background-radius: 5;" text="0 reviews" />
+        </HBox>
+    </VBox>
+
+    <!-- Filter Section -->
+    <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #ddd; -fx-border-width: 0 0 2 0;">
+        <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Filter by:" />
+
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Type:" />
+            <ComboBox fx:id="typeFilterCombo" minWidth="150" promptText="All Types" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5 10;" />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Rating:" />
+            <ComboBox fx:id="ratingFilterCombo" minWidth="150" promptText="All Ratings" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5 10;" />
+        </HBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Button fx:id="refreshButton" onAction="#handleRefresh" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 5; -fx-cursor: hand;" text="🔄 Refresh" />
+    </HBox>
+
+    <!-- Reviews List -->
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+        <VBox fx:id="reviewsContainer" spacing="15" style="-fx-background-color: #f5f5f5; -fx-padding: 20;">
+
+            <!-- Empty State Box -->
+            <VBox fx:id="emptyStateBox" alignment="CENTER" managed="false" spacing="10" style="-fx-background-color: white; -fx-padding: 40; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-border-width: 1;" visible="false">
+                <Label style="-fx-font-size: 48px;" text="📝" />
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="No reviews yet" />
+                <Label style="-fx-font-size: 14px; -fx-text-fill: #95a5a6;" text="Be the first to share your thoughts!" />
+            </VBox>
+
+            <!-- Reviews will be dynamically loaded here -->
+        </VBox>
+    </ScrollPane>
+
+</VBox>
