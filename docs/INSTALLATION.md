@@ -739,7 +739,7 @@ If you encounter issues not covered here:
 2. **Search Issues:** Check GitHub Issues for similar problems
 
 3. **Ask for Help:**
-   - Email: support@cinezone.com
+   - Email: mrhjayeed@gmail.com
    - GitHub: Create an issue
    - Forum: community.cinezone.com
 
@@ -761,4 +761,5 @@ You should now have CineZone installed and running! Enjoy using the application.
 **Next Update**: As needed
 
 Happy Movie Booking! 🎬🍿
+
 
